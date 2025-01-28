@@ -11,11 +11,11 @@ public:
             for(int j=0;j<n;j++){
                 
                 if(grid[i][j]>0){
-                    queue<pair<int,int>>q;
+                    stack<pair<int,int>>q;
                     q.push({i,j});
                     int sum=0;
                     while(!q.empty()){
-                        pair<int,int>p=q.front();
+                        pair<int,int>p=q.top();
                         q.pop();
                         int i_=p.first;
                         int j_=p.second;
