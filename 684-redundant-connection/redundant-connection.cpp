@@ -5,17 +5,28 @@ public:
 
         unordered_map<int,vector<int>>adj;
 
-        for(auto vec : edges){
+        vector<int>index;
+        unordered_map<int,bool>visited;
+
+        for(int i=0;i<edges.size();i++){
+            auto vec=edges[i];
             int val1=vec[0];
             int val2=vec[1];
+
+            if(visited[vec[0]] && visited[vec[1]]){
+                index.push_back(i);
+            }
+
+            visited[vec[0]]=true;
+            visited[vec[1]]=true;
 
             adj[val1].push_back(val2);
             adj[val2].push_back(val1);
         }
         
         vector<int>ans;
-        for(int i=edges.size()-1;i>=0;i--){
-            auto vec=edges[i];
+        for(int i=index.size()-1;i>=0;i--){
+            auto vec=edges[index[i]];
             int val1=vec[0];
             int val2=vec[1];
             unordered_map<int,bool>nodeVisited;
