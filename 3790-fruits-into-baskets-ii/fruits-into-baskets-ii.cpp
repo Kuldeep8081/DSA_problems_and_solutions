@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
+        for(int i=0;i<fruits.size();i++){
+            int noOfFruits=fruits[i];
+            for(int j=0;j<baskets.size();j++){
+                if(baskets[j] && baskets[j]>=noOfFruits){
+                    baskets[j]=0;
+                    break;
+                }
+            }
+        }
+
+        int noOfUnplaced=0;
+        for(bool it : baskets){
+            if(it)
+            noOfUnplaced++;
+        }
+
+        return noOfUnplaced;
+    }
+};
