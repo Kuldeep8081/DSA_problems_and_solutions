@@ -2,12 +2,12 @@ class Solution {
 public:
     string largestGoodInteger(string num) {
         
-        unordered_map<char,bool>mp;
+        // unordered_map<char,bool>mp;
         string ans="";
         for(int i=0;i<num.size()-2;i++){
             
-            if(mp[num[i]])
-            continue;
+            // if(mp[num[i]])
+            // continue;
 
 
             char digit=num[i];
@@ -23,14 +23,14 @@ public:
 
             if(str.size()==3 && ans.size()==0)
             {
-                mp[digit]=true;
+                // mp[digit]=true;
                 ans=str;
                 continue;
             }
 
             if(str.size()==3 && ans[0]<digit){
                ans=str;
-               mp[digit]=true;
+            //    mp[digit]=true;
             }
         }
 
