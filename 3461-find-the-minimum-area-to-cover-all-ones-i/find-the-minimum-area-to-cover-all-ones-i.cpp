@@ -12,24 +12,34 @@ public:
                 
                 if(grid[i][j]==1){
 
-                    if(top==-1)
+
+
+                    if(left==-1){
+                        left=j;
+                        right=j;
+                        top=i;
+                        bottom=i;
+                    }
+
                     bottom=i;
-                    top==-1?top=i:bottom=i;
+
+                    left=min(left,j);
+                    right=max(right,j);
                 }
             }
         }
 
-        for(int i=0;i<grid[0].size();i++){
-            for(int j=0;j<grid.size();j++){
+        // for(int i=0;i<grid[0].size();i++){
+        //     for(int j=0;j<grid.size();j++){
                 
-                if(grid[j][i]==1){
+        //         if(grid[j][i]==1){
 
-                    if(left==-1)
-                    right=i;
-                    left==-1?left=i:right=i;
-                }
-            }
-        }
+        //             if(left==-1)
+        //             right=i;
+        //             left==-1?left=i:right=i;
+        //         }
+        //     }
+        // }
 
         return (right-left+1)*(bottom-top+1);
 
