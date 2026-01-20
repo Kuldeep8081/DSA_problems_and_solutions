@@ -1,17 +1,24 @@
 class Solution {
 public:
     vector<int> minBitwiseArray(vector<int>& nums) {
-        int size=nums.size();
-        vector<int>ans(size,-1);
-        for(int i=0;i<nums.size();i++){
-            for(int val=1;val<nums[i];val++){
-                if((val | (val+1))==nums[i]){
-                    ans[i]=val;
-                    break;
-                }
-            }
+        int maxi=*max_element(nums.begin(),nums.end());
+        unordered_map<int,int>mp;
+        for(int i=maxi;i>=1;i--){
+            int result=i | (i+1);
+            mp[result]=i;
+        }
+
+        vector<int>ans;
+        for(int num : nums){
+            if(!mp[num])
+            ans.push_back(-1);
+            else
+            ans.push_back(mp[num]);
         }
 
         return ans;
+
+
+
     }
 };
