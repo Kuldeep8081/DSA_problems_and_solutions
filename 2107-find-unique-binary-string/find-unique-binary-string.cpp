@@ -1,38 +1,27 @@
 class Solution {
 public:
-    unordered_map<string ,bool>mp;
-    
-    string solve(string &str,string s,const int n){
-
-        if(s.size()==n){
-
-            if(!mp[s])
-            return s;
-
-            return "";
-        }
-
-        for(int i=0;i<=1;i++){
-
-            string str1=solve(str,s+str[i],n);
-
-            if(str1.size())
-            return str1;
-        }
-
-        return "";
-    }
-
-    string findDifferentBinaryString(vector<string>& nums) {
+    string backtrack(string s,unordered_map<string,bool>&mp){
         
-        int n=nums.size();
-        for(string str : nums){
+        if(mp.find(s)==mp.end())
+        return s;
+        for(int i=0;i<s.size();i++){
+            if(s[i]!='1'){
+                s[i]='1';
+                return backtrack(s,mp);
+                s[i]='0';
+            }
+        }
+        return s;
+    }
+    string findDifferentBinaryString(vector<string>& nums) {
+        unordered_map<string,bool>mp;
+        for(auto&str:nums){
             mp[str]=true;
         }
-
-        string str="01";
         string s="";
-
-        return solve(str,s,n);
+        for(int i=0;i<nums.size();i++){
+            s.push_back('0');
+        }
+        return backtrack(s,mp);
     }
 };
